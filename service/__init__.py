@@ -7,11 +7,17 @@ and SQL database
 import sys
 from flask import Flask
 from service import config
+from flask_talisman import Talisman
 from service.common import log_handlers
 
 # Create Flask application
 app = Flask(__name__)
 app.config.from_object(config)
+Talisman(
+    app,
+    content_security_policy=None,
+    force_https=False
+)
 
 # Import the routes After the Flask app is created
 # pylint: disable=wrong-import-position, cyclic-import, wrong-import-order
